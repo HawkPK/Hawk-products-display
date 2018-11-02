@@ -1,0 +1,57 @@
+<p>
+  All products
+</p>
+<table class='table' *ngIf="products">
+  <thead>
+      <tr>
+          <th>Number</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>PriceWithVat</th>
+          <th>Options</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let product of products">
+          <td>{{ product.number }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.description }}</td>
+          <td>{{ product.category }}</td>
+          <td>{{ product.price }}</td>
+          <td>{{ product.priceWithVat }}</td>
+          <td><button type="button" class="btn btn-info" (click)="onEdit(product)">Edit</button></td>
+      </tr>
+  </tbody>
+  <div *ngIf="showNew">
+        <form (ngSubmit)="onSave()">
+                <div class="form-group row">
+                  <label for="name-input" class="col-2 col-form-label">Name</label>
+                  <div class="col-8">
+                    <input class="form-control" type="text" [(ngModel)]="products[0].name" name="name">
+                  </div>
+                </div>
+                <div class="form-group row">
+                        <label for="description-input" class="col-2 col-form-label">Description</label>
+                        <div class="col-8">
+                          <input class="form-control" type="text" [(ngModel)]="products[0].description" name="description">
+                        </div>
+                </div>
+                <div class="form-group row">
+                        <label for="category-input" class="col-2 col-form-label">Category</label>
+                        <div class="col-8">
+                          <input class="form-control" type="text" [(ngModel)]="products[0].category" name="category">
+                        </div>
+                </div>
+                <div class="form-group row">
+                        <label for="price-input" class="col-2 col-form-label">Price</label>
+                        <div class="col-8">
+                          <input class="form-control" type="text" [(ngModel)]="products[0].price" name="price">
+                        </div>
+                </div>
+                <button type="submit" class="btn btn-success">{{submitType}}</button>
+                <button type="submit" class="btn btn-primary" (click)="onCancel()">Cancel</button>
+        </form>
+  </div>
+</table>

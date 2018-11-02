@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Hawk_products_display.Service.Domain;
+using Hawk_products_display.Service.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
@@ -22,6 +24,8 @@ namespace Hawk_products_display
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IProductDao, ProductDao>();
+            services.AddScoped<IProductBuilder, ProductBuilder>();
             services.AddMvc();
         }
 
