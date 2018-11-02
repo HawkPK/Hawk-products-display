@@ -29,17 +29,9 @@ export class ProductsComponent implements OnInit {
   }
 
   onEdit(product: Product){
-    /*this.http.post(this.baseUrl + 'api/Product/Update', product).subscribe(res => console.log(res), error => console.error(error));
-    setTimeout(()=>{
-      this.http.get(this.baseUrl + 'api/Product/Products').subscribe(result => {
-        console.log("Test Edit " + result.text());
-        this.products = result.json() as Product[];
-      }, error => console.error(error));
-    }, 100);*/
     this.showNew = true;
     this.submitType = "Update";
     this.selectedRow = product.number;
-    //Init new product
     this.productModel = new Product();
     this.selectedRow = 0;
     this.productModel = product;//Object.assign({}, this.products[this.selectedRow]);
@@ -50,6 +42,7 @@ export class ProductsComponent implements OnInit {
   onSave(){
     if (this.submitType === 'Save') {
       this.products.push(this.productModel);
+      this.http.post(this.baseUrl + 'api/Product/Create', this.productModel).subscribe(res => console.log(res), error => console.error(error));
     } else {
       this.products[this.selectedRow].name = this.productModel.name;
       this.products[this.selectedRow].description = this.productModel.description;
@@ -57,6 +50,16 @@ export class ProductsComponent implements OnInit {
       this.products[this.selectedRow].price = this.productModel.price;
       this.http.post(this.baseUrl + 'api/Product/Update', this.productModel).subscribe(res => console.log(res), error => console.error(error));
     }
+    this.showNew = false;
+  }
+
+  onNew() {
+    this.productModel = new Product();
+    this.submitType = 'Save';
+    this.showNew = true;
+  }
+
+  onCancel() {
     this.showNew = false;
   }
 }

@@ -33,14 +33,14 @@ namespace MvcMovie.Controllers
             return products;
         }
         [HttpPost("[action]")]
-        public IActionResult CreateProduct([FromBody] Product product)
+        public IActionResult Create([FromBody] Product product)
         { 
             if(!ModelState.IsValid)
                 return BadRequest("ModelState");
 
             var productForCreate = _productBuilder.GetProductForCreate(product);
             _productDao.Add(productForCreate);
-            Console.WriteLine("Test Halloween " + product.Name );
+            Console.WriteLine("Test Halloween Create" + product.Name );
             return Ok(product);
         }
 
