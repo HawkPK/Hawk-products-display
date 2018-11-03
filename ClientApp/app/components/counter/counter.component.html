@@ -5,3 +5,16 @@
 <p>Current count: <strong>{{ currentCount }}</strong></p>
 
 <button (click)="incrementCounter()">Increment</button>
+    <a [routerLink]="['/counter']">
+        <span class='glyphicon glyphicon-th-list'></span> Counter
+    </a>
+    <a [routerLink]="['/products/car']">
+        <span class='glyphicon glyphicon-th-list'></span> Products
+    </a>
+    <router-outlet></router-outlet>
+
+
+
+<app-products [productCategory]="productCategory"></app-products>
+
+

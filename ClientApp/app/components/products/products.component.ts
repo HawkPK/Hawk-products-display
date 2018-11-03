@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Input } from '@angular/core';
 import { Http, Headers, RequestOptions  } from '@angular/http';
 import { Product } from '../../model/product';
 import 'rxjs/add/operator/map';
@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+  @Input() productCategory: string = "All";
   private products: Product[];
   private showNew: boolean;
   private baseUrl: String;
@@ -25,6 +26,9 @@ export class ProductsComponent implements OnInit {
     this.http.get(this.baseUrl + 'api/Product/Products').subscribe(result => {
       console.log("Test Init " + result.text());
       this.products = result.json() as Product[];
+      if(this.productCategory != "All"){
+        this.products = this.products.filter(p => p.category == this.productCategory);
+      }
   }, error => console.error(error));
   }
 

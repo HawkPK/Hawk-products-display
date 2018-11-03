@@ -10,6 +10,9 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { ProductsComponent } from './components/products/products.component';
+import { ToysComponent } from './components/products/toys/toys.component';
+import { SportComponent } from './components/products/sport/sport.component';
+import { ElectricbikeAllegroComponent } from './components/products/sports/electricbike-allegro/electricbike-allegro.component';
 
 @NgModule({
     declarations: [
@@ -18,7 +21,10 @@ import { ProductsComponent } from './components/products/products.component';
         CounterComponent,
         FetchDataComponent,
         HomeComponent,
-        ProductsComponent
+        ProductsComponent,
+        ToysComponent,
+        SportComponent,
+        ElectricbikeAllegroComponent
     ],
     imports: [
         CommonModule,
@@ -27,9 +33,21 @@ import { ProductsComponent } from './components/products/products.component';
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
-            { path: 'counter', component: CounterComponent },
+            { path: 'counter', component: CounterComponent,
+            children:[
+              {
+                path: 'products/car',
+                component: ProductsComponent
+              },
+              {
+                path: 'counter',
+                component: CounterComponent
+              }]},
             { path: 'fetch-data', component: FetchDataComponent },
-            { path: 'products', component: ProductsComponent },
+            { path: 'products/car', component: ProductsComponent},
+            { path: 'toys', component: ToysComponent},
+            { path: 'sport', component: SportComponent},
+            { path: 'sports/electricbike-Allegro', component: ElectricbikeAllegroComponent},
             { path: '**', redirectTo: 'home' }
         ])
     ]
