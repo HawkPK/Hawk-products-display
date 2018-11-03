@@ -9,7 +9,7 @@ namespace Hawk_products_display.Service.Persistence
         Product GetProduct(int number); 
         void Update(int toReplaceIndex, Product product);
         void Add(Product product);
-        void Remove(Product product);
+        void Remove(int toReplaceIndex);
         List<Product> GetProducts();
     }
 }

@@ -10,10 +10,6 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { ProductsComponent } from './components/products/products.component';
-import { ToysComponent } from './components/products/toys/toys.component';
-import { SportComponent } from './components/products/sport/sport.component';
-import { ElectricbikeAllegroComponent } from './components/products/sports/electricbike-allegro/electricbike-allegro.component';
-
 @NgModule({
     declarations: [
         AppComponent,
@@ -21,10 +17,7 @@ import { ElectricbikeAllegroComponent } from './components/products/sports/elect
         CounterComponent,
         FetchDataComponent,
         HomeComponent,
-        ProductsComponent,
-        ToysComponent,
-        SportComponent,
-        ElectricbikeAllegroComponent
+        ProductsComponent
     ],
     imports: [
         CommonModule,
@@ -33,21 +26,12 @@ import { ElectricbikeAllegroComponent } from './components/products/sports/elect
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
-            { path: 'counter', component: CounterComponent,
-            children:[
-              {
-                path: 'products/car',
-                component: ProductsComponent
-              },
-              {
-                path: 'counter',
-                component: CounterComponent
-              }]},
+            { path: 'counter', component: CounterComponent},
             { path: 'fetch-data', component: FetchDataComponent },
-            { path: 'products/car', component: ProductsComponent},
-            { path: 'toys', component: ToysComponent},
-            { path: 'sport', component: SportComponent},
-            { path: 'sports/electricbike-Allegro', component: ElectricbikeAllegroComponent},
+            { path: 'products', component: ProductsComponent},
+            { path: 'toys', component: ProductsComponent},
+            { path: 'sport', component: ProductsComponent},
+            { path: 'sports/electricbike-Allegro', component: ProductsComponent},
             { path: '**', redirectTo: 'home' }
         ])
     ]

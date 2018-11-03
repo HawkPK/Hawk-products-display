@@ -41,9 +41,9 @@ namespace Hawk_products_display.Service.Persistence
             return products;
         }
 
-        public void Remove(Product vehicle)
+        public void Remove(int toReplaceIndex)
         {
-            throw new System.NotImplementedException();
+            products.RemoveAt(toReplaceIndex);
         }
 
         public void Update(int toReplaceIndex, Product product)

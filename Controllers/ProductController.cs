@@ -18,8 +18,6 @@ namespace MvcMovie.Controllers
             _productBuilder = productBuilder;
             _productDao = productDao;
         }
-        // 
-        // GET: /HelloWorld/
 
         public string Index()
         {
@@ -40,7 +38,6 @@ namespace MvcMovie.Controllers
 
             var productForCreate = _productBuilder.GetProductForCreate(product);
             _productDao.Add(productForCreate);
-            Console.WriteLine("Test Halloween Create" + product.Name );
             return Ok(product);
         }
 
@@ -51,9 +48,16 @@ namespace MvcMovie.Controllers
                 return BadRequest("ModelState");
 
             var productForUpdate = _productBuilder.GetProductForUpdate(product);
-            Console.WriteLine(productForUpdate.Name);
             _productDao.Update(productForUpdate);
-            Console.WriteLine("Test Halloween Update" + product.Category ); 
+            return Ok(product);
+        }
+
+        [HttpDelete("[action]")]
+        public IActionResult Delete([FromBody] Product product)
+        { 
+            if(!ModelState.IsValid)
+                return BadRequest("ModelState");
+            _productDao.Remove(product);
             return Ok(product);
         }
     }
