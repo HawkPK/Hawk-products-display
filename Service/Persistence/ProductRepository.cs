@@ -18,7 +18,7 @@ namespace Hawk_products_display.Service.Persistence
                     Number = 111111,
                     Name = "Test",
                     Description = "Test",
-                    Category = "Test",
+                    Category = "sport",
                     Price = 20.5m,
                     PriceWithVat = 20.5m*1.12m
                 }

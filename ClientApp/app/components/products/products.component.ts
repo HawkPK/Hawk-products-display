@@ -11,6 +11,7 @@ import { ProductService } from '../../service/product.service';
 })
 export class ProductsComponent implements OnInit {
   @Input() productCategory: string;
+  private productCategories: string[] = ['sport','toys','electricbike-Allegro'];
   private products: Product[];
   private showNew: boolean;
   private submitType: String;
