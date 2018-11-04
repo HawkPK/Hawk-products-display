@@ -26,7 +26,6 @@ export class ProductsComponent implements OnInit {
   ngOnInit() {
     this.productCategory = this.getProductCategory();
     this.syncData();
-    this.products = this.getProductByCategory();
   }
 
   onEdit(product: Product){
@@ -51,9 +50,6 @@ export class ProductsComponent implements OnInit {
       this._productService.UpdateProduct(this.productModel);
     }
     this.syncData();
-    if(this.productCategory != "products"){
-      this.products = this.products.filter(p => p.category == this.productCategory);
-    }
     this.showNew = false;
   }
 
@@ -75,9 +71,16 @@ export class ProductsComponent implements OnInit {
   syncData() {
     setTimeout(() => {
       this._productService.GetProducts().subscribe( data => {
-        this.products = data;
+        this.products = this.getProductByCategory(data);
       });
       },100);
+  }
+
+  getProductByCategory(products : Product[]): Product[]{
+    if(this.productCategory != "products"){
+      return products.filter(p => p.category == this.productCategory);
+    }
+    return products;
   }
 
   getProductCategory(): string {   
@@ -87,10 +90,4 @@ export class ProductsComponent implements OnInit {
     return this._route.snapshot.url[0].path;
   }
 
-  getProductByCategory(): Product[]{
-    if(this.productCategory != "products"){
-      return this.products = this.products.filter(p => p.category == this.productCategory);
-    }
-    return this.products;
-  }
 }
