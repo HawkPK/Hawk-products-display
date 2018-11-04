@@ -1,3 +1,4 @@
+import { ProductService } from './service/product.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -34,6 +35,9 @@ import { ProductsComponent } from './components/products/products.component';
             { path: 'sports/electricbike-Allegro', component: ProductsComponent},
             { path: '**', redirectTo: 'home' }
         ])
+    ],
+    providers: [
+        ProductService
     ]
 })
 export class AppModuleShared {

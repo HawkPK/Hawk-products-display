@@ -51,7 +51,8 @@ namespace Hawk_products_display.Service.Persistence
             products[toReplaceIndex].Name = product.Name;
             products[toReplaceIndex].Description = product.Description;
             products[toReplaceIndex].Category = product.Category;
-            products[toReplaceIndex].Price = product.Price;          
+            products[toReplaceIndex].Price = product.Price;
+            products[toReplaceIndex].PriceWithVat = product.PriceWithVat;            
         }
     }
 }
