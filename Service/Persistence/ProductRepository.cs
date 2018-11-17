@@ -15,7 +15,7 @@ namespace Hawk_products_display.Service.Persistence
             if(products is null){
               products = new List<Product>(){
                 new Product(){
-                    Number = 111111,
+                    ArticleNo = "p1234567",
                     Name = "Test",
                     Description = "Test",
                     Category = "sport",

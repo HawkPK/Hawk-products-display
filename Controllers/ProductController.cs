@@ -6,6 +6,9 @@ using Hawk_products_display.Model;
 using System.Threading.Tasks;
 using Hawk_products_display.Service.Persistence;
 using Hawk_products_display.Service.Domain;
+using AutoMapper;
+using Hawk_products_display.Controllers.Resources;
+using System.Linq;
 
 namespace MvcMovie.Controllers
 {
@@ -14,9 +17,11 @@ namespace MvcMovie.Controllers
     {
         private readonly IProductBuilder _productBuilder;
         private readonly IProductDao _productDao;
-        public ProductController(IProductBuilder productBuilder, IProductDao productDao){
+        private readonly IMapper _mapper;
+        public ProductController(IProductBuilder productBuilder, IProductDao productDao, IMapper mapper){
             _productBuilder = productBuilder;
             _productDao = productDao;
+            _mapper = mapper;
         }
 
         public string Index()
@@ -28,6 +33,11 @@ namespace MvcMovie.Controllers
         public IEnumerable<Product> Products()
         {
             IEnumerable<Product> products = _productDao.GetProducts();
+            var vehicle = _mapper.Map<Product, ProductResource>(products.First());
+            Console.WriteLine(vehicle.Test + "TETESTESTSET");
+            IPriceCalculator price = new PriceCalculator();
+            vehicle.Test = price.GetWithVat(vehicle.Price);
+            Console.WriteLine(vehicle.Test + "TETESTESTSET");
             return products;
         }
         [HttpPost("[action]")]

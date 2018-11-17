@@ -5,7 +5,7 @@
 <table class='table' *ngIf="products">
   <thead>
       <tr>
-          <th>Number</th>
+          <th>ArticleNo</th>
           <th>Name</th>
           <th>Description</th>
           <th>Category</th>
@@ -17,7 +17,7 @@
   </thead>
   <tbody>
       <tr *ngFor="let product of products">
-          <td>{{ product.number }}</td>
+          <td>{{ product.articleNo }}</td>
           <td>{{ product.name }}</td>
           <td>{{ product.description }}</td>
           <td>{{ product.category }}</td>
@@ -31,34 +31,52 @@
   <div class="text-right">
     <button type="submit" class="btn btn-primary" (click)="onNew()">New</button>
   </div>
+  <div class="row">
+      <div *ngIf="error" class="col-md-3 alert alert-danger">
+          <strong>Danger!</strong> ArticleNo already exist.
+      </div>
+  </div>
 
-  <div *ngIf="showNew" div class="col-8">
-      <form (ngSubmit)="onSave()">
+  <div *ngIf="showNew" class="col-8">
+      <form novalidate (ngSubmit)="onSave()">
+            <div *ngIf="this.submitType === 'Save'" class="form-group row">
+                <label for="name-input" class="col-2 col-form-label">ArticleNo
+                <div class="col-6">
+                  <input class="form-control" type="text" [(ngModel)]="productModel.articleNo" name="articleNo">
+                </div>
+              </label>
+              </div>
               <div class="form-group row">
-                <label for="name-input" class="col-2 col-form-label">Name</label>
-                <div class="col-8">
+                <label for="name-input" class="col-2 col-form-label">Name
+                <div class="col-6">
                   <input class="form-control" type="text" [(ngModel)]="productModel.name" name="name">
                 </div>
+              </label>
               </div>
               <div class="form-group row">
-                      <label for="description-input" class="col-2 col-form-label">Description</label>
-                      <div class="col-8">
+                      <label for="description-input" class="col-2 col-form-label">Description
+                      <div class="col-6">
                         <input class="form-control" type="text" [(ngModel)]="productModel.description" name="description">
                       </div>
+                    </label>
               </div>
               <div class="form-group row">
-                      <label for="category-input" class="col-2 col-form-label">Category</label>
-                        <select class="col-8 form-control"  id="category"
+                      <label for="category-input" class="col-2 col-form-label">Category
+                        <div class="col-6 ">
+                        <select class="form-control"  id="category"
                                 required
                                 [(ngModel)]="productModel.category" name="category">
                           <option *ngFor="let category of productCategories" [value]="category">{{category}}</option>
                         </select>
+                      </div>
+                      </label>
               </div>
               <div class="form-group row">
-                      <label for="price-input" class="col-2 col-form-label">Price</label>
-                      <div class="col-8">
+                      <label for="price-input" class="col-2 col-form-label">Price
+                      <div class="col-6">
                         <input class="form-control" type="text" [(ngModel)]="productModel.price" name="price">
                       </div>
+                    </label>
               </div>
               <button type="submit" class="btn btn-success">{{submitType}}</button>
               <button type="submit" class="btn btn-primary" (click)="onCancel()">Cancel</button>

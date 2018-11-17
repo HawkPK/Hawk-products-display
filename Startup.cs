@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using AutoMapper;
 
 namespace Hawk_products_display
 {
@@ -24,6 +25,7 @@ namespace Hawk_products_display
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper();
             services.AddScoped<IProductDao, ProductDao>();
             services.AddScoped<IProductBuilder, ProductBuilder>();
             services.AddMvc();

@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 export class ProductService {
 
   private _baseUrl: string;
+  private _products: Product[];
 
   constructor(private http: Http, @Inject('BASE_URL') baseUrl: string) { 
     this._baseUrl = baseUrl;
@@ -19,8 +20,20 @@ export class ProductService {
 
   GetProducts(): Observable<any> {
     return this.http.get(this._baseUrl + 'api/Product/Products').map(result => {
-        return result.json() as Product[];});   
+        this._products = result.json() as Product[];
+        return this._products});   
   }
+
+  IsArticleExist(articleNo: string){
+    if(this._products.filter(x => x.articleNo === articleNo).length != 0){
+      return true;
+    };
+  return false;
+}
+
+getProductByCategory(products : Product[]): Product[]{
+  return products;
+}
 
   UpdateProduct(productModel: Product): any {
     this.http.post(this._baseUrl + 'api/Product/Update', productModel).subscribe(res => console.log(res + "updateXXXXXXX"), error => console.error(error));

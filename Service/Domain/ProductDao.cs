@@ -34,13 +34,13 @@ namespace Hawk_products_display.Service.Domain
 
         public void Remove(Product product)
         {
-            var toReplaceIndex = _productRepository.GetProducts().FindIndex(x => x.Number == product.Number);
+            var toReplaceIndex = _productRepository.GetProducts().FindIndex(x => x.ArticleNo == product.ArticleNo);
             _productRepository.Remove(toReplaceIndex);
         }
 
         public void Update(Product product)
         {
-            var toReplaceIndex = _productRepository.GetProducts().FindIndex(x => x.Number == product.Number);
+            var toReplaceIndex = _productRepository.GetProducts().FindIndex(x => x.ArticleNo == product.ArticleNo);
             _productRepository.Update(toReplaceIndex, product);
         }
     }

@@ -16,8 +16,8 @@ export class ProductsComponent implements OnInit {
   private showNew: boolean;
   private submitType: String;
   private productModel: Product;
-  private selectedRow: number;
   private _route: ActivatedRoute;
+  private error: boolean;
 
   constructor(route: ActivatedRoute, private _productService: ProductService) { 
     this._route = route;
@@ -31,26 +31,27 @@ export class ProductsComponent implements OnInit {
   onEdit(product: Product){
     this.showNew = true;
     this.submitType = "Update";
-    this.selectedRow = product.number;
     this.productModel = new Product();
-    this.selectedRow = 0;
-    this.productModel = product;
     this.submitType = 'Update';
     this.showNew = true;
   }
 
   onSave(){
     if (this.submitType === 'Save') {
-      this._productService.CreateNewProduct(this.productModel);
+      if(this._productService.IsArticleExist(this.productModel.articleNo)){
+        this.error = true;
+      } else {
+        this._productService.CreateNewProduct(this.productModel);
+        this.syncData();
+        this.error = false;
+        this.showNew = false;
+      }
     } else {
-      this.products[this.selectedRow].name = this.productModel.name;
-      this.products[this.selectedRow].description = this.productModel.description;
-      this.products[this.selectedRow].category = this.productModel.category;
-      this.products[this.selectedRow].price = this.productModel.price;
-      this._productService.UpdateProduct(this.productModel);
-    }
-    this.syncData();
-    this.showNew = false;
+          this._productService.UpdateProduct(this.productModel);
+          this.syncData();
+          this.error = false;
+          this.showNew = false;
+      }
   }
 
   onNew() {
@@ -65,7 +66,17 @@ export class ProductsComponent implements OnInit {
   }
 
   onCancel() {
+    this.error = false;
     this.showNew = false;
+  }
+
+
+  test(articleNo: string) {
+    setTimeout(() => {
+      this._productService.GetProducts().subscribe( data => {
+        this.products = this.getProductByCategory(data);
+      });
+      },100);
   }
 
   syncData() {
@@ -75,6 +86,7 @@ export class ProductsComponent implements OnInit {
       });
       },100);
   }
+
 
   getProductByCategory(products : Product[]): Product[]{
     if(this.productCategory != "products"){

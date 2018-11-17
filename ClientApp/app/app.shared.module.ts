@@ -1,7 +1,7 @@
 import { ProductService } from './service/product.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
@@ -21,6 +21,7 @@ import { ProductsComponent } from './components/products/products.component';
         ProductsComponent
     ],
     imports: [
+        ReactiveFormsModule,
         CommonModule,
         HttpModule,
         FormsModule,

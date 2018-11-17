@@ -21,7 +21,7 @@ namespace Hawk_products_display.Service.Domain
         public Product GetProductForCreate(Product product)
         {
             return new Product(){
-                Number = _idGenerator.GetNextId(),
+                ArticleNo = product.ArticleNo,//_idGenerator.GetNextId(),
                 Name = product.Name,
                 Description = product.Description,
                 Category = product.Category,
