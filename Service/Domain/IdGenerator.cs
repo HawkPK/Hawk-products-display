@@ -18,8 +18,7 @@ namespace Hawk_products_display.Service.Domain
         {
             var products = _productRepository.GetProducts();
             if(products.Any()){
-                Console.WriteLine(products.Max(x => x.Number) + 1 + "MAAAAAXXXXXXXXX");
-                return products.Max(x => x.Number) + 1;
+                //return products.Max(x => x.Number) + 1;
             }
             return DefaultValue.FirstId;
         }
