@@ -6,7 +6,7 @@ namespace Hawk_products_display.Service.Persistence
 {
     public interface IProductRepository
     {
-        Product GetProduct(int number); 
+         List<Category> GetCategories(); 
         void Update(int toReplaceIndex, Product product);
         void Add(Product product);
         void Remove(int toReplaceIndex);

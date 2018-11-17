@@ -28,6 +28,7 @@ namespace Hawk_products_display
             services.AddAutoMapper();
             services.AddScoped<IProductDao, ProductDao>();
             services.AddScoped<IProductBuilder, ProductBuilder>();
+            services.AddScoped<IPriceCalculator, PriceCalculator>();
             services.AddMvc();
         }
 

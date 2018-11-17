@@ -8,8 +8,8 @@ namespace Hawk_products_display.Service.Domain
         void Remove(Product product);
          void Update(Product product);
          void Add(Product product);
-         Product GetProduct(int number);
-         IEnumerable<Product> GetProducts();
+         List<Category> GetCategories();
+         List<Product> GetProducts();
 
     }
 }

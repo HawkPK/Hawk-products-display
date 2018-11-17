@@ -21,17 +21,15 @@ namespace Hawk_products_display.Service.Domain
         public Product GetProductForCreate(Product product)
         {
             return new Product(){
-                ArticleNo = product.ArticleNo,//_idGenerator.GetNextId(),
+                ArticleNo = product.ArticleNo,
                 Name = product.Name,
                 Description = product.Description,
-                Category = product.Category,
+                CategoryId = product.CategoryId,
                 Price = product.Price,
-                PriceWithVat = _priceCalculator.GetWithVat(product.Price)
             };
         }
         public Product GetProductForUpdate(Product product)
         {
-            product.PriceWithVat = _priceCalculator.GetWithVat(product.Price);
             return product;
         }
     }

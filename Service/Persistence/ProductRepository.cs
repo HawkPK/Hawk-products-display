@@ -8,19 +8,36 @@ namespace Hawk_products_display.Service.Persistence
 {
     public class ProductRepository : IProductRepository
     {
-        private static List<Product> products;
+        private static List<Product> _products;
+        private static List<Category> _categories;
 
         public ProductRepository()
         {
-            if(products is null){
-              products = new List<Product>(){
+            if(_products is null){
+              _products = new List<Product>(){
                 new Product(){
                     ArticleNo = "p1234567",
                     Name = "Test",
                     Description = "Test",
-                    Category = "sport",
+                    CategoryId = 1,
                     Price = 20.5m,
-                    PriceWithVat = 20.5m*1.12m
+                }
+            };
+            }
+
+            if(_categories is null){
+              _categories = new List<Category>(){
+                new Category(){
+                    CategoryId = 1,
+                    CategoryName = "sport"
+                },
+                new Category(){
+                    CategoryId = 2,
+                    CategoryName = "toys"
+                },
+                new Category(){
+                    CategoryId = 3,
+                    CategoryName = "electricbike-Allegro"
                 }
             };
             }
@@ -28,31 +45,30 @@ namespace Hawk_products_display.Service.Persistence
 
         public void Add(Product product)
         {
-          products.Add(product);
+          _products.Add(product);
         }
 
-        public Product GetProduct(int number)
+        public List<Category> GetCategories()
         {
-            throw new System.NotImplementedException();
+            return _categories;
         }
 
         public List<Product> GetProducts()
         {
-            return products;
+            return _products;
         }
 
         public void Remove(int toReplaceIndex)
         {
-            products.RemoveAt(toReplaceIndex);
+            _products.RemoveAt(toReplaceIndex);
         }
 
         public void Update(int toReplaceIndex, Product product)
         {         
-            products[toReplaceIndex].Name = product.Name;
-            products[toReplaceIndex].Description = product.Description;
-            products[toReplaceIndex].Category = product.Category;
-            products[toReplaceIndex].Price = product.Price;
-            products[toReplaceIndex].PriceWithVat = product.PriceWithVat;            
+            _products[toReplaceIndex].Name = product.Name;
+            _products[toReplaceIndex].Description = product.Description;
+            _products[toReplaceIndex].CategoryId = product.CategoryId;
+            _products[toReplaceIndex].Price = product.Price;           
         }
     }
 }

@@ -22,12 +22,12 @@ namespace Hawk_products_display.Service.Domain
             _productRepository.Add(product);
         }
 
-        public Product GetProduct(int number)
+        public List<Category> GetCategories()
         {
-            throw new System.NotImplementedException();
+            return _productRepository.GetCategories();
         }
 
-        public IEnumerable<Product> GetProducts()
+        public List<Product> GetProducts()
         {
             return _productRepository.GetProducts();
         }

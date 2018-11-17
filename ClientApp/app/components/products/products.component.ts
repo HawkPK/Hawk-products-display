@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Product } from '../../model/product';
+import { ProductResource } from '../../model/productResource';
 import 'rxjs/add/operator/map';
 import { ActivatedRoute} from '@angular/router';
 import { ProductService } from '../../service/product.service';
@@ -12,10 +12,10 @@ import { ProductService } from '../../service/product.service';
 export class ProductsComponent implements OnInit {
   @Input() productCategory: string;
   private productCategories: string[] = ['sport','toys','electricbike-Allegro'];
-  private products: Product[];
+  private products: ProductResource[];
   private showNew: boolean;
   private submitType: String;
-  private productModel: Product;
+  private productModel: ProductResource;
   private _route: ActivatedRoute;
   private error: boolean;
 
@@ -28,10 +28,11 @@ export class ProductsComponent implements OnInit {
     this.syncData();
   }
 
-  onEdit(product: Product){
+  onEdit(product: ProductResource){
     this.showNew = true;
     this.submitType = "Update";
-    this.productModel = new Product();
+    this.productModel = new ProductResource();
+    this.productModel = product;
     this.submitType = 'Update';
     this.showNew = true;
   }
@@ -55,12 +56,12 @@ export class ProductsComponent implements OnInit {
   }
 
   onNew() {
-    this.productModel = new Product();
+    this.productModel = new ProductResource();
     this.submitType = 'Save';
     this.showNew = true;
   }
 
-  onDelete(product: Product) {
+  onDelete(product: ProductResource) {
     this._productService.Delete(product)
     this.syncData();
   }
@@ -68,15 +69,6 @@ export class ProductsComponent implements OnInit {
   onCancel() {
     this.error = false;
     this.showNew = false;
-  }
-
-
-  test(articleNo: string) {
-    setTimeout(() => {
-      this._productService.GetProducts().subscribe( data => {
-        this.products = this.getProductByCategory(data);
-      });
-      },100);
   }
 
   syncData() {
@@ -87,8 +79,7 @@ export class ProductsComponent implements OnInit {
       },100);
   }
 
-
-  getProductByCategory(products : Product[]): Product[]{
+  getProductByCategory(products : ProductResource[]): ProductResource[]{
     if(this.productCategory != "products"){
       return products.filter(p => p.category == this.productCategory);
     }

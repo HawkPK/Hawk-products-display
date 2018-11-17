@@ -1,4 +1,4 @@
-export class Product {
+export class ProductResource {
     constructor(
         public articleNo: string = '',
         public name: string = '',
