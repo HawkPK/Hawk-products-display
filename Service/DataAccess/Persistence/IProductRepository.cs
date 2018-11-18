@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Hawk_products_display.Model;
 
-namespace Hawk_products_display.Service.Persistence
+namespace Hawk_products_display.Service.DataAccess.Persistence
 {
     public interface IProductRepository
     {

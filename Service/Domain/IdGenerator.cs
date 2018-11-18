@@ -1,7 +1,8 @@
 using System.Linq;
 using Hawk_products_display.Service.Code;
-using Hawk_products_display.Service.Persistence;
 using System;
+using Hawk_products_display.Service.Domain.Interface;
+using Hawk_products_display.Service.DataAccess.Persistence;
 
 namespace Hawk_products_display.Service.Domain
 {

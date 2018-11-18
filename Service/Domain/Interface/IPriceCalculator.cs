@@ -1,4 +1,4 @@
-namespace Hawk_products_display.Service.Domain
+namespace Hawk_products_display.Service.Domain.Interface
 {
     public interface IPriceCalculator
     {

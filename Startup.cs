@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Hawk_products_display.Service.Domain;
-using Hawk_products_display.Service.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using AutoMapper;
+using Hawk_products_display.Service.Domain.Interface;
+using Hawk_products_display.Service.Domain.DataAccess.Interface;
+using Hawk_products_display.Service.Domain.DataAccess;
+using Hawk_products_display.Service.DataAccess.Interface;
+using Hawk_products_display.Service.DataAccess;
 
 namespace Hawk_products_display
 {
@@ -27,6 +31,7 @@ namespace Hawk_products_display
         {
             services.AddAutoMapper();
             services.AddScoped<IProductDao, ProductDao>();
+            services.AddScoped<ICategoryDao, CategoryDao>();
             services.AddScoped<IProductBuilder, ProductBuilder>();
             services.AddScoped<IPriceCalculator, PriceCalculator>();
             services.AddMvc();

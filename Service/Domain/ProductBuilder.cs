@@ -1,5 +1,6 @@
 using Hawk_products_display.Model;
-using Hawk_products_display.Service.Persistence;
+using Hawk_products_display.Service.DataAccess.Persistence;
+using Hawk_products_display.Service.Domain.Interface;
 
 namespace Hawk_products_display.Service.Domain
 {

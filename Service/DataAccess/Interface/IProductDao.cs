@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Hawk_products_display.Model;
 
-namespace Hawk_products_display.Service.Domain
+namespace Hawk_products_display.Service.Domain.DataAccess.Interface
 {
     public interface IProductDao
     {

@@ -3,6 +3,7 @@ import { ProductResource } from '../../model/productResource';
 import 'rxjs/add/operator/map';
 import { ActivatedRoute} from '@angular/router';
 import { ProductService } from '../../service/product.service';
+import { CategoryResource } from '../../model/categoryResource';
 
 @Component({
   selector: 'app-products',
@@ -12,15 +13,16 @@ import { ProductService } from '../../service/product.service';
 export class ProductsComponent implements OnInit {
   @Input() productCategory: string;
   private productCategories: string[] = ['sport','toys','electricbike-Allegro'];
+  private productTestCategories: CategoryResource[];
   private products: ProductResource[];
   private showNew: boolean;
   private submitType: String;
   private productModel: ProductResource;
-  private _route: ActivatedRoute;
+  private route: ActivatedRoute;
   private error: boolean;
 
   constructor(route: ActivatedRoute, private _productService: ProductService) { 
-    this._route = route;
+    this.route = route;
   }
 
   ngOnInit() {
@@ -77,6 +79,12 @@ export class ProductsComponent implements OnInit {
         this.products = this.getProductByCategory(data);
       });
       },100);
+
+    setTimeout(() => {
+      this._productService.GetCategories().subscribe( data => {
+        this.productTestCategories = data as CategoryResource[];
+      });
+      },100);
   }
 
   getProductByCategory(products : ProductResource[]): ProductResource[]{
@@ -87,10 +95,10 @@ export class ProductsComponent implements OnInit {
   }
 
   getProductCategory(): string {   
-    if(this._route.snapshot.url.length > 1){
-      return this.productCategory = this._route.snapshot.url[1].path;
+    if(this.route.snapshot.url.length > 1){
+      return this.productCategory = this.route.snapshot.url[1].path;
     }
-    return this._route.snapshot.url[0].path;
+    return this.route.snapshot.url[0].path;
   }
 
 }

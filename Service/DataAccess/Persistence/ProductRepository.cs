@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Hawk_products_display.Model;
 using System.Linq;
 
-namespace Hawk_products_display.Service.Persistence
+namespace Hawk_products_display.Service.DataAccess.Persistence
 {
     public class ProductRepository : IProductRepository
     {

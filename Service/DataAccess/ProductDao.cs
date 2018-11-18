@@ -1,9 +1,10 @@
 
 using System.Collections.Generic;
 using Hawk_products_display.Model;
-using Hawk_products_display.Service.Persistence;
+using Hawk_products_display.Service.DataAccess.Persistence;
+using Hawk_products_display.Service.Domain.DataAccess.Interface;
 
-namespace Hawk_products_display.Service.Domain
+namespace Hawk_products_display.Service.Domain.DataAccess
 {
     public class ProductDao : IProductDao
     {

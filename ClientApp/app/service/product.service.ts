@@ -3,12 +3,14 @@ import { Http, RequestOptions } from '@angular/http';
 import { ProductResource } from '../model/productResource';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
+import { CategoryResource } from '../model/categoryResource';
 
 @Injectable()
 export class ProductService {
 
   private _baseUrl: string;
   private _productsResource: ProductResource[];
+  private _categoryResource: CategoryResource[];
 
   constructor(private http: Http, @Inject('BASE_URL') baseUrl: string) { 
     this._baseUrl = baseUrl;
@@ -22,6 +24,12 @@ export class ProductService {
     return this.http.get(this._baseUrl + 'api/Product/Products').map(result => {
         this._productsResource = result.json() as ProductResource[];
         return this._productsResource});   
+  }
+
+  GetCategories(): Observable<any> {
+    return this.http.get(this._baseUrl + 'api/Product/Categories').map(result => {
+        this._categoryResource = result.json() as CategoryResource[];
+        return this._categoryResource});   
   }
 
   IsArticleExist(articleNo: string){
