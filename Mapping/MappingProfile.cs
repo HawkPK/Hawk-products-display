@@ -10,8 +10,10 @@ namespace Hawk_products_display.Mapping
         {
             // Domain to API Resource
             CreateMap<Product, ProductResource>();
+            CreateMap<Category, CategoryResource>();
             // API Resource to Domain
             CreateMap<ProductResource, Product>();
+            CreateMap<CategoryResource, Category>();
         }
     }
 }

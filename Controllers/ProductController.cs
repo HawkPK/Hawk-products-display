@@ -36,10 +36,15 @@ namespace MvcMovie.Controllers
         }
 
         [HttpGet("[action]")]
-        public IEnumerable<Category> Categories()
+        public IEnumerable<CategoryResource> Categories()
         {
             IEnumerable<Category> categories = _categoryDao.GetCategories();
-            return categories;
+            IList<CategoryResource> categoryResources = new List<CategoryResource>();
+            foreach(var category in categories){
+                var categoryResource = _mapper.Map<Category, CategoryResource>(category);
+                categoryResources.Add(categoryResource);
+            }          
+            return (IEnumerable<CategoryResource>) categoryResources;
         }
 
         [HttpGet("[action]")]

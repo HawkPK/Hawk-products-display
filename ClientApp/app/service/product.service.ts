@@ -39,12 +39,12 @@ export class ProductService {
   return false;
 }
 
-getProductByCategory(products : ProductResource[]): ProductResource[]{
+GetProductByCategory(products : ProductResource[]): ProductResource[]{
   return products;
 }
 
   UpdateProduct(productModel: ProductResource): any {
-    this.http.post(this._baseUrl + 'api/Product/Update', productModel).subscribe(res => console.log(res + "updateXXXXXXX"), error => console.error(error));
+    this.http.post(this._baseUrl + 'api/Product/Update', productModel).subscribe(res => console.log(res), error => console.error(error));
   }
 
   Delete(product: ProductResource): any {

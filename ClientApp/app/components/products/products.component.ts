@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Testability } from '@angular/core';
 import { ProductResource } from '../../model/productResource';
 import 'rxjs/add/operator/map';
 import { ActivatedRoute} from '@angular/router';
@@ -12,8 +12,7 @@ import { CategoryResource } from '../../model/categoryResource';
 })
 export class ProductsComponent implements OnInit {
   @Input() productCategory: string;
-  private productCategories: string[] = ['sport','toys','electricbike-Allegro'];
-  private productTestCategories: CategoryResource[];
+  private productCategories: CategoryResource[];
   private products: ProductResource[];
   private showNew: boolean;
   private submitType: String;
@@ -82,7 +81,13 @@ export class ProductsComponent implements OnInit {
 
     setTimeout(() => {
       this._productService.GetCategories().subscribe( data => {
-        this.productTestCategories = data as CategoryResource[];
+        this.productCategories = data as CategoryResource[];
+        // var test: string[];
+        
+        // productResourceCategories.forEach(function(element) {         
+        //   console.log(element.categoryName);
+        //   test.push(element.categoryName);
+        // });
       });
       },100);
   }
